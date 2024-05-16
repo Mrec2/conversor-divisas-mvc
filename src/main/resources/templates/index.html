@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Conversor Divisas MVC</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script>
+        function validarFormulario() {
+            var cantidad = document.getElementById("cantidad").value;
+            if (isNaN(cantidad) || cantidad <= 0) {
+                alert("Por favor, introduce un número válido para la cantidad.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>CONVERSOR DIVISAS MVC</h1>
+    <form action="#" th:action="@{/convertir}" method="get" onsubmit="return validarFormulario()">
+        <label for="cantidad">Cantidad (€):</label>
+        <input type="text" id="cantidad" name="cantidad" required>
+        <div class="radio-group">
+            <input type="radio" id="libras" name="divisa" value="LIBRAS" required>
+            <label for="libras">Libras</label>
+            <input type="radio" id="pesetas" name="divisa" value="PESETAS">
+            <label for="pesetas">Pesetas</label>
+        </div>
+        <button type="submit">Convertir</button>
+    </form>
+    <div id="resultado" th:text="${resultado}"></div>
+</div>
+</body>
+</html>
